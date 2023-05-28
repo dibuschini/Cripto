@@ -1,0 +1,116 @@
+﻿@model UsuarioModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_BlankLayout.cshtml";
+}
+
+@section styles{
+    <link rel="stylesheet" type="text/css" href="~/assets/libs/toastr/build/toastr.min.css">
+}
+
+@if (TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   
+        @TempData["AlertMessage"]
+    </div>
+    TempData.Remove("AlertMessage");
+}
+
+
+<div class="account-pages my-5 pt-sm-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 col-xl-5">
+                <div class="card overflow-hidden">
+                    <div class="bg-primary bg-soft">
+                        <div class="row">
+                            <div class="col-7">
+                                <div class="text-primary p-4">
+                                    <h5 class="text-primary">Bem vindo!</h5>
+                                    <p>Faça login para continuar.</p>
+                                </div>
+                            </div>
+                            <div class="col-5 align-self-end">
+                                <img src="~/assets/images/verification-img.png" alt="" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body pt-0">
+                        <div class="auth-logo">
+                            <a href=@Url.Action("Index", "Login") class="auth-logo-light">
+                                <div class="avatar-md profile-user-wid mb-4">
+                                    <span class="avatar-title rounded-circle bg-light">
+                                        <img src="~/assets/images/logo-light.svg" alt="" class="rounded-circle" height="34">
+                                    </span>
+                                </div>
+                            </a>
+
+                            <a href=@Url.Action("Index", "Login") class="auth-logo-dark">
+                                <div class="avatar-md profile-user-wid mb-4">
+                                    <span class="avatar-title rounded-circle bg-light">
+                                        <img src="~/assets/images/trade1.png" alt="" class="rounded-circle" height="80">
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="p-2">
+                            <form asp-controller="Login" asp-action="ValidarLogin" method="post" class="needs-validation" )>
+
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">Usuário</label>
+                                    <input type="text" class="form-control" asp-for="Email">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Senha</label>
+                                    <div class="input-group auth-pass-inputgroup">
+                                        <input type="password" class="form-control" aria-label="Password" aria-describedby="password-addon" asp-for="Senha">
+                                        <button class="btn btn-light " type="button"><i class="mdi mdi-eye-outline"></i></button>
+                                    </div>
+                                </div>
+
+                                <div class="mt-3 d-grid">
+                                    <button class="btn btn-primary waves-effect waves-light" type="submit">Entrar</button>
+                                </div>
+
+
+
+                                <div class="mt-4 text-center">
+                                    <a href=@Url.Action("Recuperar", "Login") class="text-muted"><i class="mdi mdi-lock me-1"></i>Esqueceu sua senha?</a>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="mt-5 text-center">
+
+                    <div>
+                        <p>Não tem uma conta ? <a href=@Url.Action("Criar_usuario", "Login") class="fw-medium text-primary"> Inscreva-se agora </a> </p>
+                        <p>
+                            ©
+                            <script>document.write(new Date().getFullYear())</script> Buschini. Criado por <i class="mdi mdi-heart text-danger"></i> Diogo Buschini Nieto
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end account-pages -->
+@section scripts{
+
+    <script src="~/assets/libs/toastr/build/toastr.min.js"></script>
+
+    <!-- toastr init -->
+    <script src="~/assets/js/pages/toastr.init.js"></script>
+
+    <script src="~/assets/js/app.js"></script>
+
+    <!-- App js -->
+    <script src="~/assets/js/app.js"></script>
+}

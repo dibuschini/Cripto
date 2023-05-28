@@ -1,0 +1,98 @@
+﻿@model List<UsuarioModel>
+
+@{
+
+    Layout = "~/Views/Shared/Layouts/_layout_horizontal.cshtml";
+}
+
+@if (TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+        @TempData["AlertMessage"]
+    </div>
+    TempData.Remove("AlertMessage");
+}
+
+
+
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title mb-4">Dados do usuário</h4>
+
+
+            @if (Model != null && Model.Any())
+            {
+                var usuario = Model.FirstOrDefault(u => u.Id == 1); // Supondo que "id" seja o ID do usuário desejado
+
+                if (usuario != null)
+                {
+                     <form asp-controller="Profile" asp-action="Alterar" method="post" class="needs-validation")>
+
+                         <input type="hidden" asp-for="@usuario.Id"/>
+                    <div class="mb-3">
+                        <label for="formrow-firstname-input" class="form-label">Nome</label>
+                            <input type="text" class="form-control" value="@usuario.Nome" asp-for="@usuario.Nome" id="formrow-firstname-input">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="formrow-email-input" class="form-label">Email</label>
+                                    <input type="email" class="form-control" value="@usuario.Email" asp-for="@usuario.Email"  id="formrow-email-input">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="formrow-email-input" class="form-label">Celular</label>
+                                    <input type="tel" class="form-control" value="@usuario.Celular" asp-for="@usuario.Celular"  id="formrow-email-input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="mb-3">
+                                <label for="formrow-inputCity" class="form-label">Cidade</label>
+                                    <input type="text" class="form-control" value="@usuario.Cidade" asp-for="@usuario.Cidade"  id="formrow-inputCity">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="mb-3">
+                                <label for="formrow-inputCity" class="form-label">Bairro</label>
+                                    <input type="text" class="form-control" value="@usuario.Bairro" asp-for="@usuario.Bairro" id="formrow-inputCity">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="mb-3">
+                                <label for="formrow-inputCity" class="form-label">Rua</label>
+                                    <input type="text" class="form-control" value="@usuario.Rua" asp-for="@usuario.Rua" id="formrow-inputCity">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary w-md">Editar</button>
+                    </div>
+                    </form>
+                }
+                else
+                {
+                    <p>Usuário não encontrado.</p>
+                }
+            }
+
+            
+
+        </div>
+    </div>
+</div>
+
+
+               
+
+               
+
+       
