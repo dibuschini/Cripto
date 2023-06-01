@@ -54,7 +54,7 @@ namespace Dimensiona.Controllers
             {
                 // Redirect the user to the home page.
                 
-                await new Services().Login(HttpContext, model);
+                await new Services().Login(HttpContext, user);
                 return RedirectToAction("inicio","Home");
             }
             else

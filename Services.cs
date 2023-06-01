@@ -8,11 +8,12 @@ namespace Dimensiona
     public class Services
     {
 
-        public async Task Login(HttpContext ctx, UsuarioModel usuarios)
+        public async Task Login(HttpContext ctx, UsuarioModel user)
         {
             var claims = new List<Claim>();
-            claims.Add(new Claim(ClaimTypes.Name, usuarios.Email));
-          
+            
+            claims.Add(new Claim(ClaimTypes.Name, user.Nome.ToString()));
+
 
             var claimsIdentity =
                 new ClaimsPrincipal(

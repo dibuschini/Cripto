@@ -1,5 +1,5 @@
 ﻿@model List<UsuarioModel>
-
+@using Microsoft.AspNetCore.Identity
 @{
     ViewBag.Title = "Profile";
     ViewBag.pTitle = "Usuario";
@@ -28,7 +28,7 @@
 
             @if (Model != null && Model.Any())
             {
-                var usuario = Model.FirstOrDefault(u => u.Id == 14);
+                var usuario = Model.FirstOrDefault(u => u.Id == 1);
 
                 if (usuario != null)
                 {
