@@ -1,7 +1,9 @@
 ﻿@model List<UsuarioModel>
 
 @{
-
+    ViewBag.Title = "Profile";
+    ViewBag.pTitle = "Usuario";
+    ViewBag.pageTitle = "Profile";
     Layout = "~/Views/Shared/Layouts/_layout_horizontal.cshtml";
 }
 
@@ -26,7 +28,7 @@
 
             @if (Model != null && Model.Any())
             {
-                var usuario = Model.FirstOrDefault(u => u.Id == 1); // Supondo que "id" seja o ID do usuário desejado
+                var usuario = Model.FirstOrDefault(u => u.Id == 14);
 
                 if (usuario != null)
                 {

@@ -1,226 +1,436 @@
-﻿@model DimensionamentoModel
+﻿@model Trade
 
 @{
-   
-    ViewBag.pTitle = "dimensionamento";
- 
+    ViewBag.Title = "Exchange";
+    ViewBag.pTitle = "Exchange";
+    ViewBag.pageTitle = "Crypto";
     Layout = "~/Views/Shared/Layouts/_layout_horizontal.cshtml";
 }
-<link href="~/assets/css/checkbox-card.css" rel="stylesheet" type="text/css" />
 
+@if (TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+        @TempData["AlertMessage"]
+    </div>
+    TempData.Remove("AlertMessage");
+}
 
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-               
-
-                <div id="basic-example">
-                    <!-- Seller Details -->
-                    <h3>Menu</h3>
-                    <section>
-                        <h4 class="card-title mb-4">1. O que deseja dimensionar</h4>
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <ul class="check-card">
-                                        <li class="check-card-item">
-
-                                            <input type="checkbox" class="custom-control-input menu_selecao" id="checkbox_filtracao">
-                                            <label class="custom-control-label" for="checkbox_filtracao"></label>
-
-                                            <div class="check-card-bg"></div>
-                                            <div class="check-card-body">
-                                                <div class="check-card-toggle">
-                                                    <span></span>
-                                                    <span></span>
-                                                </div>
-                                                <div class="check-card-body-in">
-                                                    <h4 class="check-card-title text-black">Tratamento</h4 >
-
-                                                    <div class="mt-3">
-                                                        <div class="d-flex">
-                                                            <span class="svg-icon svg-icon-md svg-icon-white flex-shrink-0 mr-3">
-                                                                <!--begin::Svg Icon | path:/metronic/theme/html/demo1/dist/assets/media/svg/icons/Navigation/Arrow-right.svg-->
-                                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                        <polygon points="0 0 24 0 24 24 0 24"></polygon>
-                                                                        <rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)" x="11" y="5" width="2" height="14" rx="1"></rect>
-                                                                        <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"></path>
-                                                                    </g>
-                                                                </svg>
-                                                                <!--end::Svg Icon-->
-                                                            </span>
-                                                            <h4 class="text-black">Acessórios</h4>
-                                                        </div>
-                                                        <div class="mt-3 d-flex">
-                                                            <span class="svg-icon svg-icon-md svg-icon-white flex-shrink-0 mr-3">
-                                                                <!--begin::Svg Icon | path:/metronic/theme/html/demo1/dist/assets/media/svg/icons/Navigation/Arrow-right.svg-->
-                                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                        <polygon points="0 0 24 0 24 24 0 24"></polygon>
-                                                                        <rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)" x="11" y="5" width="2" height="14" rx="1"></rect>
-                                                                        <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"></path>
-                                                                    </g>
-                                                                </svg>
-                                                                <!--end::Svg Icon-->
-                                                            </span>
-                                                            <span class="text-black">Filtros</span>
-                                                        </div>
-                                                        <div class="mt-3 d-flex">
-                                                            <span class="svg-icon svg-icon-md svg-icon-white flex-shrink-0 mr-3">
-                                                                <!--begin::Svg Icon | path:/metronic/theme/html/demo1/dist/assets/media/svg/icons/Navigation/Arrow-right.svg-->
-                                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                        <polygon points="0 0 24 0 24 24 0 24"></polygon>
-                                                                        <rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000)" x="11" y="5" width="2" height="14" rx="1"></rect>
-                                                                        <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)"></path>
-                                                                    </g>
-                                                                </svg>
-                                                                <!--end::Svg Icon-->
-                                                            </span>
-                                                            <span class="text-black">Motobombas</span>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                                <div class="check-card-cancel text-black">Selecionado</div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                               
-                               
-                            </div>
+                <div class="d-flex align-items-start">
+                    <div class="flex-shrink-0 me-3">
+                        <img src="~/assets/images/users/avatar.jpg" alt="" class="avatar-md rounded-circle img-thumbnail">
+                    </div>
+                    <div class="flex-grow-1 align-self-center">
+                        <div class="text-muted">
+                            <h5>Diogo</h5>
+                            <p class="mb-1">nieto.buschini@gmail.com</p>
+                            <p class="mb-0">Id no: #SK0234</p>
                         </div>
-
-
-
-
-
-
-
-                    </section>
-
-                    <!-- Company Document -->
-                    <h3>Informações</h3>
-                    <section>
-                        <h4 class="card-title mb-4">1. Dados do cliente</h4>
-                        <p class="card-title-desc">Campos obrigatórios para arquivar o dimensionamento.</p>
-                        <form asp-controller="Home" asp-action="Criar_dimensionamento" method="post" class="needs-validation" )>
-
-                            <div class="col-lg-12">
-                                    <div class="mb-3">
-                                        <label for="basicpill-pancard-input">Nome do cliente ou obra:</label>
-                                        <input type="text" class="form-control" id="basicpill-pancard-input" asp-for="Cliente">
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-12">
-                                    <div class="mb-3">
-                                    <label for="basicpill-vatno-input">Endereço do cliente ou obra:</label>
-                                        <input type="text" class="form-control" id="basicpill-vatno-input" asp-for="Endereco">
-                                    </div>
-                                </div>
-
-                            <h4 class="card-title mb-4">2. Dados da piscina</h4>
-                            <p class="card-title-desc">Campos obrigatórios para dimensionamento de toda a linha de produtos</p>
-
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label for="basicpill-cstno-input">Comprimento (m)</label>
-                                        <input type="text" class="form-control" id="basicpill-cstno-input" asp-for="Comprimento">
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label for="basicpill-servicetax-input">Largura (m)</label>
-                                        <input type="text" class="form-control" id="basicpill-servicetax-input" asp-for="Largura">
-                                    </div>
+                    </div>
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-light" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-wallet me-1"></i> <span class="d-none d-sm-inline-block">Saldo da carteira <i class="mdi mdi-chevron-down"></i></span></button>
+                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-md">
+                            <div class="dropdown-item-text">
+                                <div>
+                                    <p class="text-muted mb-2">Available Balance</p>
+                                    <h5 class="mb-0">$ 9148.23</h5>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label for="basicpill-companyuin-input">Profundiade mínima (m)</label>
-                                        <input type="text" class="form-control" id="basicpill-companyuin-input" asp-for="ProfundidadeMin">
-                                    </div>
-                                </div>
 
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label for="basicpill-declaration-input">Profundidade máxima (m)</label>
-                                        <input type="text" class="form-control" id="basicpill-Declaration-input" asp-for="ProfundidadeMax">
-                                    </div>
-                                </div>
-                                <label for="basicpill-companyuin-input">Uso da piscina:</label>
-                                <div class="d-flex flex-wrap gap-3">
-                                  
-                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                    <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" checked="" wfd-id="id14">
-                                    <label class="btn btn-outline-secondary" for="btnradio4">Residencial</label>
+                            <div class="dropdown-divider"></div>
 
-                                    <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off" wfd-id="id15">
-                                    <label class="btn btn-outline-secondary" for="btnradio5">Coletivo/Comercial</label>
+                            <a class="dropdown-item" href="#">
+                                BTC : <span class="float-end">1.02356</span>
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                ETH : <span class="float-end">0.04121</span>
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                LTC : <span class="float-end">0.00356</span>
+                            </a>
 
-                                </div>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary waves-effect waves-light">Primary</button>
-                        </form>
-                    </section>
+                            <div class="dropdown-divider"></div>
 
-                    <!-- Bank Details -->
-                    <h3>Filtração</h3>
-                    <section>
-                        <div>
-                           
-
-
+                            <a class="dropdown-item text-primary text-center" href="#">
+                                Learn more
+                            </a>
                         </div>
-                    </section>
-
-                    <!-- Confirm Details -->
-                    <h3>Resumo</h3>
-                    <section>
-                        <div class="row justify-content-center">
-                            <div class="col-lg-6">
-                                <div class="text-center">
-                                    <div class="mb-4">
-                                        <i class="mdi mdi-check-circle-outline text-success display-4"></i>
-                                    </div>
-                                    <div>
-                                        <h5>Confirm Detail</h5>
-                                        <p class="text-muted">If several languages coalesce, the grammar of the resulting</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                    </div>
                 </div>
-
             </div>
-            <!-- end card body -->
         </div>
-        <!-- end card -->
     </div>
-    <!-- end col -->
 </div>
 <!-- end row -->
 
+<div class="row">
+    <div class="col-xl-8">
+        <!-- TradingView Widget BEGIN -->
+        <div class="tradingview-widget-container" style="width: 100%; height: 90%;">
+            <div id="tradingview_6166d" style="width: 100%; height: 100%;"></div>
+            <div class="tradingview-widget-copyright">
+                <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
+                    <span class="blue-text">Track all markets on TradingView</span>
+                </a>
+            </div>
+            <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+            <script type="text/javascript">
+                new TradingView.widget({
+                    "autosize": true,
+                    "symbol": "BINANCE:ETHUSDT.P",
+                    "interval": "240",
+                    "timezone": "America/Sao_Paulo",
+                    "theme": "light",
+                    "style": "1",
+                    "locale": "en",
+                    "toolbar_bg": "#f1f3f6",
+                    "enable_publishing": false,
+                    "allow_symbol_change": true,
+                    "container_id": "tradingview_6166d"
+                });
+            </script>
+        </div>
+        <!-- TradingView Widget END -->
+
+    </div>
+
+    <div class="col-xl-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Compra / Venda</h4>
+
+                <div>
+                    <p class="text-muted mb-2"><i class="mdi mdi-wallet me-1"></i>Saldo da Carteira</p>
+                    <h5>$ 9148.23</h5>
+                </div>
+                <form asp-controller="Home" asp-action="Criar_ordem" method="post" class="needs-validation")>
+                <div class="mt-4">
+                    <ul class="nav nav-pills bg-light rounded" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#buy-tab" role="tab">Comprar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#sell-tab" role="tab">Vender</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content mt-4">
+                        <div class="tab-pane active" id="buy-tab" role="tabpanel">
+
+                            <h5 class="font-size-14 mb-4">
+                                Comprar Moeda
+                            </h5>
+
+                            <div>
+                                <div>
+                                    <label>Adicionar quantidade :</label>
+                                    <div class="input-group mb-3">
+                                        <label class="input-group-text">Quantidade</label>
+                                        <select class="form-select" asp-for ="Moeda" style="max-width: 90px;">
+                                            <option value="BTCUSDT" selected>BTC</option>
+                                            <option value="ETHUSDT">ETH</option>
+                                           
+                                        </select>
+                                        <input type="text" asp-for ="Quantidade" class="form-control">
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <label class="input-group-text">StopLoss</label>
+                                        <input type="text" asp-for ="Preco" class="form-control" >
+                                        <label class="input-group-text">$</label>
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <label class="input-group-text">TakeProfit</label>
+                                        <input type="text" asp-for="Preco" class="form-control">
+                                        <label class="input-group-text">%</label>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <label class="input-group-text">Total</label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-success w-md">Comprar moeda</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="sell-tab" role="tabpanel">
+
+                            <h5 class="font-size-14 mb-4">Vender moeda</h5>
+
+                            <div>
+
+                                <div>
+                                    <label>Adcionar quantidade :</label>
+                                    <div class="input-group mb-3">
+                                        <label class="input-group-text">Quantidade</label>
+                                        <select class="form-select" style="max-width: 90px;">
+                                            <option value="BT" selected>BTC</option>
+                                            <option value="ET">ETH</option>
+                                           
+                                        </select>
+                                        <input type="text" class="form-control">
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <label class="input-group-text">Preço</label>
+                                        <input type="text" class="form-control" >
+                                        <label class="input-group-text">$</label>
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <label class="input-group-text">Total</label>
+                                        <input type="text" class="form-control" >
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <button type="button" class="btn btn-danger w-md">Vender moeda</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="exchange-tab" role="tabpanel">
+                            <div class="float-end ms-2">
+                                <h5 class="font-size-14"><i class="bx bx-wallet text-primary font-size-16 align-middle me-1"></i> $4235.23</h5>
+                            </div>
+                            <h5 class="font-size-14 mb-4">Exchange Coin</h5>
+
+                            <div>
+
+                                <div class="form-group mb-3">
+                                    <label>Payment method :</label>
+                                    <select class="custom-select">
+                                        <option>Credit / Debit Card</option>
+                                        <option>Paypal</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label>Add Amount :</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <label class="input-group-text">Amount</label>
+                                        </div>
+                                        <select class="custom-select" style="max-width: 90px;">
+                                            <option value="1" selected>BTC</option>
+                                            <option value="2">ETH</option>
+                                            <option value="3">LTC</option>
+                                        </select>
+                                        <input type="text" class="form-control">
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <label class="input-group-text">Price</label>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="Price">
+                                        <div class="input-group-append">
+                                            <label class="input-group-text">$</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <label class="input-group-text">Total</label>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="Total">
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <button type="button" class="btn btn-secondary w-md">Exchange Coin</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end row -->
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Atividades</h4>
+
+                <ul class="nav nav-tabs nav-tabs-custom">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Todas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Compra</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Venda</a>
+                    </li>
+                </ul>
+
+                <div class="mt-4">
+                    <div class="table-responsive">
+                        <table id="datatable" class="table table-hover dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th>ID No</th>
+                                    <th>Date</th>
+                                    <th>Type</th>
+                                    <th>Currency</th>
+                                    <th>Amount</th>
+                                    <th>Amount in USD</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td><a href="javascript: void(0);" class="text-body fw-bold">#SK3215</a></td>
+
+                                    <td>03 Mar, 2020</td>
+                                    <td>Buy</td>
+                                    <td>Bitcoin</td>
+                                    <td>1.00952 BTC</td>
+                                    <td>$ 9067.62</td>
+                                </tr>
+
+                                <tr>
+                                    <td><a href="javascript: void(0);" class="text-body fw-bold">#SK3216</a></td>
+
+                                    <td>04 Mar, 2020</td>
+                                    <td>Sell</td>
+                                    <td>Ethereum</td>
+                                    <td>0.00413 ETH</td>
+                                    <td>$ 2123.01</td>
+                                </tr>
+
+                                <tr>
+                                    <td><a href="javascript: void(0);" class="text-body fw-bold">#SK3217</a></td>
+
+                                    <td>04 Mar, 2020</td>
+                                    <td>Buy</td>
+                                    <td>Bitcoin</td>
+                                    <td>0.00321 BTC</td>
+                                    <td>$ 1802.62</td>
+                                </tr>
+
+                                <tr>
+                                    <td><a href="javascript: void(0);" class="text-body fw-bold">#SK3218</a></td>
+
+                                    <td>05 Mar, 2020</td>
+                                    <td>Buy</td>
+                                    <td>Litecoin</td>
+                                    <td>0.00224 LTC</td>
+                                    <td>$ 1773.01</td>
+                                </tr>
+
+                                <tr>
+                                    <td><a href="javascript: void(0);" class="text-body fw-bold">#SK3219</a></td>
+
+                                    <td>06 Mar, 2020</td>
+                                    <td>Buy</td>
+                                    <td>Ethereum</td>
+                                    <td>1.04321 ETH</td>
+                                    <td>$ 9423.73</td>
+                                </tr>
+
+                                <tr>
+                                    <td><a href="javascript: void(0);" class="text-body fw-bold">#SK3220</a></td>
+
+                                    <td>07 Mar, 2020</td>
+                                    <td>Sell</td>
+                                    <td>Bitcoin</td>
+                                    <td>0.00413 ETH</td>
+                                    <td>$ 2123.01</td>
+                                </tr>
+
+                                <tr>
+                                    <td><a href="javascript: void(0);" class="text-body fw-bold">#SK3221</a></td>
+
+                                    <td>07 Mar, 2020</td>
+                                    <td>Buy</td>
+                                    <td>Bitcoin</td>
+                                    <td>1.00952 BTC</td>
+                                    <td>$ 9067.62</td>
+                                </tr>
+
+                                <tr>
+                                    <td><a href="javascript: void(0);" class="text-body fw-bold">#SK3222</a></td>
+
+                                    <td>08 Mar, 2020</td>
+                                    <td>Sell</td>
+                                    <td>Ethereum</td>
+                                    <td>0.00413 ETH</td>
+                                    <td>$ 2123.01</td>
+                                </tr>
+
+                                <tr>
+                                    <td><a href="javascript: void(0);" class="text-body fw-bold">#SK3223</a></td>
+
+                                    <td>09 Mar, 2020</td>
+                                    <td>Sell</td>
+                                    <td>Litecoin</td>
+                                    <td>1.00952 LTC</td>
+                                    <td>$ 9067.62</td>
+                                </tr>
+
+                                <tr>
+                                    <td><a href="javascript: void(0);" class="text-body fw-bold">#SK3224</a></td>
+
+                                    <td>10 Mar, 2020</td>
+                                    <td>Buy</td>
+                                    <td>Ethereum</td>
+                                    <td>0.00413 ETH</td>
+                                    <td>$ 2123.01</td>
+                                </tr>
+
+                                <tr>
+                                    <td><a href="javascript: void(0);" class="text-body fw-bold">#SK3225</a></td>
+
+                                    <td>11 Mar, 2020</td>
+                                    <td>Buy</td>
+                                    <td>Bitcoin</td>
+                                    <td>1.00952 BTC</td>
+                                    <td>$ 9067.62</td>
+                                </tr>
+
+                                <tr>
+                                    <td><a href="javascript: void(0);" class="text-body fw-bold">#SK3226</a></td>
+
+                                    <td>12 Mar, 2020</td>
+                                    <td>Sell</td>
+                                    <td>Ethereum</td>
+                                    <td>0.00413 ETH</td>
+                                    <td>$ 2123.01</td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- end row -->
 @section scripts{
-    <!-- jquery step -->
-    <script src="~/assets/libs/jquery-steps/build/jquery.steps.min.js"></script>
+    <!-- apexcharts -->
+    <script src="~/assets/libs/apexcharts/apexcharts.min.js"></script>
 
-    <!-- form wizard init -->
-    <script src="~/assets/js/pages/form-wizard.init.js"></script>
+    <!-- crypto exchange init -->
+    <script src="~/assets/js/pages/crypto-exchange.init.js"></script>
 
     <script src="~/assets/js/app.js"></script>
 }
 
-                    
+

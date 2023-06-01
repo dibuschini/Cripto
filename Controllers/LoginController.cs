@@ -22,7 +22,7 @@ namespace Dimensiona.Controllers
         public IActionResult Index()
         {
             if (HttpContext.User.Identity.IsAuthenticated)
-                return RedirectToAction("index","Home");
+                return RedirectToAction("inicio","Home");
             return View();
         }
 
